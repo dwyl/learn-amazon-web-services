@@ -44,8 +44,11 @@ ssh -i ~/.ssh/nelsonic.pem ubuntu@ec2-54-229-220-192.eu-west-1.compute.amazonaws
 
 ### Install Node.js
 
+Mercifully you no longer need to compile node.js from source (the good old days ;-)
+Now there is an apt package you can install with a single command:
+
 ```terminal
-sudo apt-get install nodejs
+sudo apt-get install nodejs npm
 ```
 
 Confirm what version of nodejs you have installed:
@@ -74,13 +77,16 @@ var http = require('http'),
 
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end("Hello World\n");
+  response.end("Node.js HTTP Server Running on Amazon EC2!\n");
 }).listen(port);
 
-console.log("Node HTTP Server running on"+port);
+console.log("Node HTTP Server running on "+port);
 ```
 
 http://54.229.220.192
+
+
+**Note**: your IP address will be different
 
 
 ### Tips
