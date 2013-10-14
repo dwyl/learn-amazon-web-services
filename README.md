@@ -5,6 +5,10 @@ Documenting/sharing how I get an EC2 instance up and running.
 
 - - - 
 
+This whole process takes about 20 mins including creating an AWS account.
+(I recommend creating a new email address and brand new amazon account to take
+full advantage of AWS "free tier" so you don't pay while you play!)
+
 ### Register for an Amason Webservices Account
 
 If you don't already have an Amazon Web Services (AWS) account 
@@ -95,7 +99,7 @@ Select the Default Security Group (the one we edited above):
 
 #### Select the Key
 
-Select the Key you uploaded earlier (so you can access the instance from SSH)
+Select the Key you imported earlier (so you can access the instance from SSH)
 
 ![AWS Security Group](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step4-select-existing-key-pair.png "AWS Security Group")
 
@@ -135,6 +139,8 @@ Now there is an apt package you can install with a single command:
 ```terminal
 sudo apt-get install nodejs npm
 ```
+![AWS install node.js ubuntu](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-sudo-apt-get-install-nodejs.png "AWS install node.js on ubuntu")
+
 
 type **y** in the terminal and [enter] to install.
 
