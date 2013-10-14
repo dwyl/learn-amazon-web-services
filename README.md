@@ -9,6 +9,9 @@ This whole process takes about 20 mins including creating an AWS account.
 (I recommend creating a new email address and brand new amazon account to take
 full advantage of AWS "free tier" so you don't pay while you play!)
 
+As always, if you have any questions, tweet me! 
+[@nelsonic](https://twitter.com/nelsonic)
+
 ### Register for an Amason Webservices Account
 
 If you don't already have an Amazon Web Services (AWS) account 
@@ -39,7 +42,8 @@ what key you want to use to access it.
 If you don't have any knowledge of SSH or public/private keys, don't worry,
 its pretty simple. 
 
-[Insert simple explanation of Public Key Crypto :-]
+Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
+
 
 
 ### CSecurity Group Definitions
@@ -115,20 +119,26 @@ Go over everything one last time and click **Launch**
 
 ![AWS instance running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step8-instance-running.png "AWS instance running")
 
+
 ### Connecting to your instance via SSH (Terminal/Console)
 
-If you only have *one* key pair on your computer you can log into your EC2 Instance
-using a command:
+On Mac/Linux Open your **Terminal** application and execute 
+the follow SSH connection command:
+
+(If you only have *one* key pair on your computer)
 
 ```terminal
 ssh ubuntu@ec2-54-229-220-192.eu-west-1.compute.amazonaws.com
 ```
 
-Otherwise you will need to specify the key in your ssh connection request:
+If you have more than one key pair on your computer 
+you will need to specify the key in your ssh connection request:
 
 ```terminal
 ssh -i ~/.ssh/nelsonic.pem ubuntu@ec2-54-229-220-192.eu-west-1.compute.amazonaws.com
 ```
+
+New to terminal? Try this guide: http://guides.macrumors.com/Terminal
 
 
 ### Install Node.js
