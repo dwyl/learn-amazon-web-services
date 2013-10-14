@@ -5,7 +5,10 @@ Documenting/sharing how I get an EC2 instance up and running.
 
 - - - 
 
-If you don't already have an AWS account you will need to register for one:
+### Register for an Amason Webservices Account
+
+If you don't already have an Amazon Web Services (AWS) account 
+you will need to register for one:
 http://aws.amazon.com and click the **Sign Up** button.
 
 **Note**: Signup will ask you for **credit card** details,
@@ -14,15 +17,44 @@ the [http://aws.amazon.com/free/](http://aws.amazon.com/free/)
 (this includes a **Free** *Micro* Instance)
 
 Once you have registered for AWS, login via: http://aws.amazon.com/console/
+You will see all the AWS services available to you.
+
+![AWS Console Home](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-console-home.png "AWS Console Home")
+
+Click on **EC2** (Elastic Cloud Compute)
+
 
 ### Add your SSH Keys to AWS
 
+To access your EC2 instance via the command line you will need to let AWS know 
+what key you want to use to access it.
+
+![AWS Add Keypair](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-import-keypair-nelsonic.png "AWS Add Key Pair")
+
+
+If you don't have any knowledge of SSH or public/private keys, don't worry,
+its pretty simple. 
+
+[Insert simple explanation of Public Key Crypto :-]
 
 
 ### Confirm Security Group Definitions
 
+In the right column/menu click on **Security Groups** 
+and confirm your **default** security profile allows
+inbound traffic on TCP Port 22 (ssh) and 80 (http)
+(by default these ports aren't open, you need to add them)
+
+![AWS Add TCP Port Rules](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-security-group-add-TCP-rule.png "AWS  Add TCP Port Rules")
+
 ### Create EC2 Instance
 
+Click **Instances** in the right column/menu and then click **Launch Instance**:
+![AWS EC2 Launch](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step0-launch.png "AWS ec2 launch")
+
+Select an Amamzon Machine Image (AMI) from the list of available AMIs:
+
+![AWS Chose an AMI](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step1-choose-ami.png "AWS Pick an AMI")
 
 
 
@@ -51,10 +83,16 @@ Now there is an apt package you can install with a single command:
 sudo apt-get install nodejs npm
 ```
 
+type **y** in the terminal and [enter] to install.
+
 Confirm what version of nodejs you have installed:
 
 ```terminal
 node --version
+```
+
+```terminal
+npm --version
 ```
 
 **Note**: If you get an *error*:
@@ -85,6 +123,7 @@ console.log("Node HTTP Server running on "+port);
 
 http://54.229.220.192
 
+![node server running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-node-running.png "Node HTTP Server Working")
 
 **Note**: your IP address will be different
 
