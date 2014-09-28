@@ -12,7 +12,7 @@ full advantage of AWS "free tier" so you don't pay while you play!)
 As always, if you have any questions, tweet me! 
 [@nelsonic](https://twitter.com/nelsonic)
 
-### Register for an Amason Webservices Account
+### Register for an Amazon Webservices Account
 
 If you don't already have an Amazon Web Services (AWS) account 
 you will need to register for one:
