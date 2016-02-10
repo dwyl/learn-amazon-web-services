@@ -255,7 +255,11 @@ An S3 bucket can be used to host a static website.
 
 	`http://[bucket-name].s3-website-[region].amazonaws.com`
 
-3. Select the permissions tab. We need to add a bucket policy that make the bucket content public so the website endpoint can show the website files. Click 'Add Bucket Policy' and paste in the following policy:
+3. Select the permissions tab. We need to add a bucket policy that make the bucket content public so the website endpoint can show the website files.
+
+	![permissions 1](https://cloud.githubusercontent.com/assets/5912647/12922752/a3de5aa4-cf4a-11e5-9a87-71e09dbd3206.png)
+
+	Click 'Add Bucket Policy' and paste in the following policy:
 
 	```js
 	{
@@ -274,8 +278,6 @@ An S3 bucket can be used to host a static website.
 
 	Replace 'example-bucket' with the name of your bucket
 
-	![permissions 1](https://cloud.githubusercontent.com/assets/5912647/12922752/a3de5aa4-cf4a-11e5-9a87-71e09dbd3206.png)
-
 	![permissions 2](https://cloud.githubusercontent.com/assets/5912647/12922762/b0c6c71a-cf4a-11e5-8fa5-f40f37c9cc83.png)
 
 4. Upload the index document and other files for your website.
@@ -284,7 +286,9 @@ An S3 bucket can be used to host a static website.
 
 	![upload 2](https://cloud.githubusercontent.com/assets/5912647/12922815/f1cbb8ec-cf4a-11e5-97b0-fda80b5940c2.png)
 
-5. Test the website by entering the website URL in the browser
+5. Test the website by entering the website URL in the browser!
+
+	The uploading of files can be incorporated into your continuous integration process. **NB the names of the files need to be versioned to prevent the cached version being displayed after an update.**
 
 ### Notes
 
