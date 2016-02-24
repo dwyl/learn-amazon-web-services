@@ -1,26 +1,31 @@
-EC2Setup
+Tutorials for AWS services
+
+* [EC2](#ec2setup)
+* [S3 Static Website Hosting](#s3-static-website-hosting)
+
+## EC2Setup
 ========
 
 Documenting/sharing how I get an EC2 instance up and running.
 
-- - - 
+- - -
 
 This whole process takes about 20 mins including creating an AWS account.
 (I recommend creating a new email address and brand new amazon account to take
 full advantage of AWS "free tier" so you don't pay while you play!)
 
-As always, if you have any questions, tweet me! 
+As always, if you have any questions, tweet me!
 [@nelsonic](https://twitter.com/nelsonic)
 
 ### Register for an Amazon Webservices Account
 
-If you don't already have an Amazon Web Services (AWS) account 
+If you don't already have an Amazon Web Services (AWS) account
 you will need to register for one:
 http://aws.amazon.com and click the **Sign Up** button.
 
 **Note**: Signup will ask you for **credit card** details,
-don't worry you won't be charged anything if you stay within 
-the [http://aws.amazon.com/free/](http://aws.amazon.com/free/) 
+don't worry you won't be charged anything if you stay within
+the [http://aws.amazon.com/free/](http://aws.amazon.com/free/)
 (this includes a **Free** *Micro* Instance)
 
 Once you have registered for AWS, login via: http://aws.amazon.com/console/
@@ -33,14 +38,14 @@ Click on **EC2** (Elastic Cloud Compute)
 
 ### Add your SSH Keys to AWS
 
-To access your EC2 instance via the command line you will need to let AWS know 
+To access your EC2 instance via the command line you will need to let AWS know
 what key you want to use to access it.
 
 ![AWS Add Keypair](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-import-keypair-nelsonic.png "AWS Add Key Pair")
 
 
 If you don't have any knowledge of SSH or public/private keys, don't worry,
-its pretty simple. 
+its pretty simple.
 
 Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
 
@@ -48,7 +53,7 @@ Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key
 
 ### CSecurity Group Definitions
 
-In the right column/menu click on **Security Groups** 
+In the right column/menu click on **Security Groups**
 and confirm your **default** security profile allows
 inbound traffic on TCP **Port 22** (SSH) and **80** (http)
 (by default these ports aren't open, you need to add them)
@@ -122,7 +127,7 @@ Go over everything one last time and click **Launch**
 
 ### Connecting to your instance via SSH (Terminal/Console)
 
-On Mac/Linux Open your **Terminal** application and execute 
+On Mac/Linux Open your **Terminal** application and execute
 the follow SSH connection command:
 
 (If you only have *one* key pair on your computer)
@@ -131,7 +136,7 @@ the follow SSH connection command:
 ssh ubuntu@ec2-54-229-220-192.eu-west-1.compute.amazonaws.com
 ```
 
-If you have more than one key pair on your computer 
+If you have more than one key pair on your computer
 you will need to specify the key in your ssh connection request:
 
 ```terminal
@@ -175,7 +180,7 @@ You will need to add the path, simply run this command in terminal
 export PATH=$PATH:/usr/bin
 ```
 
-### Create Simple Node.js HTTP Server 
+### Create Simple Node.js HTTP Server
 
 ```terminal
 vi app.js
@@ -221,12 +226,69 @@ To resolve this, open your ssh config file:
 vi ~/.ssh/config
 ```
 
-and add the follwing lines:
+and add the following lines:
 
 ```
 ServerAliveInterval 120
 TCPKeepAlive yes
 ```
+
+
+## S3 Static Website Hosting
+
+An S3 bucket can be used to host a static website.
+
+1. Start by creating a new S3 bucket in the AWS S3 console.
+
+ ![s3 console](https://cloud.githubusercontent.com/assets/5912647/12922703/71dca7f4-cf4a-11e5-8cb2-80df7d8795ab.png)
+
+ ![new bucket](https://cloud.githubusercontent.com/assets/5912647/12922707/78204cce-cf4a-11e5-8626-ad93fbd67ea7.png)
+
+
+2. Select the 'Static Website Hosting' tab. Click 'Enable Website Hosting' and in the 	Index Document box add the name of the html file that will be your home page.
+
+	![bucket created](https://cloud.githubusercontent.com/assets/5912647/12922719/7f829da0-cf4a-11e5-9aae-70be23b348d2.png)
+
+	![static hosting](https://cloud.githubusercontent.com/assets/5912647/12922739/9780e33a-cf4a-11e5-9948-411b25500256.png)
+
+	Click Save. Note down the url for your website. It will be of the form :
+
+	`http://[bucket-name].s3-website-[region].amazonaws.com`
+
+3. Select the permissions tab. We need to add a bucket policy that make the bucket content public so the website endpoint can show the website files.
+
+	![permissions 1](https://cloud.githubusercontent.com/assets/5912647/12922752/a3de5aa4-cf4a-11e5-9a87-71e09dbd3206.png)
+
+	Click 'Add Bucket Policy' and paste in the following policy:
+
+	```js
+	{
+	  "Version":"2012-10-17",
+	  "Statement":[{
+		"Sid":"PublicReadForGetBucketObjects",
+	        "Effect":"Allow",
+		  "Principal": "*",
+	      "Action":["s3:GetObject"],
+	      "Resource":["arn:aws:s3:::example-bucket/*"
+	      ]
+	    }
+	  ]
+	}
+	```
+
+	Replace 'example-bucket' with the name of your bucket
+
+	![permissions 2](https://cloud.githubusercontent.com/assets/5912647/12922762/b0c6c71a-cf4a-11e5-8fa5-f40f37c9cc83.png)
+
+4. Upload the index document and other files for your website.
+
+	![upload](https://cloud.githubusercontent.com/assets/5912647/12922773/bb8e1e46-cf4a-11e5-991d-3166631a8027.png)
+
+	![upload 2](https://cloud.githubusercontent.com/assets/5912647/12922815/f1cbb8ec-cf4a-11e5-97b0-fda80b5940c2.png)
+
+5. Test the website by entering the website URL in the browser!
+
+	The uploading of files can be incorporated into your continuous integration process. **NB the names of the files need to be versioned to prevent the cached version being displayed after an update.**
 
 ### Notes
 
@@ -235,8 +297,4 @@ TCPKeepAlive yes
 - More detail: http://unix.stackexchange.com/questions/34004/how-does-tcp-keepalive-work-in-ssh
 - Simple Node Server: http://howtonode.org/hello-node
 - EC2 Guide: http://aws.amazon.com/documentation/ec2/
-
-
-
-
-
+- S3: Setting up a static website: http://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html
