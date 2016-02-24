@@ -63,9 +63,4 @@ An S3 bucket can be used to host a static website.
 
 ### Notes
 
-- Install Node.js on Ubuntu: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint
-- SSH Keep Alive: http://stackoverflow.com/questions/13228425/write-failed-broken-pipe
-- More detail: http://unix.stackexchange.com/questions/34004/how-does-tcp-keepalive-work-in-ssh
-- Simple Node Server: http://howtonode.org/hello-node
-- EC2 Guide: http://aws.amazon.com/documentation/ec2/
 - S3: Setting up a static website: http://docs.aws.amazon.com/AmazonS3/latest/dev/HostingWebsiteOnS3Setup.html

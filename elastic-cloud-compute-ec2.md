@@ -227,3 +227,11 @@ and add the following lines:
 ServerAliveInterval 120
 TCPKeepAlive yes
 ```
+
+## Notes
+
+- Install Node.js on Ubuntu: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint
+- SSH Keep Alive: http://stackoverflow.com/questions/13228425/write-failed-broken-pipe
+- More detail: http://unix.stackexchange.com/questions/34004/how-does-tcp-keepalive-work-in-ssh
+- Simple Node Server: http://howtonode.org/hello-node
+- EC2 Guide: http://aws.amazon.com/documentation/ec2/
