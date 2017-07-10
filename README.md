@@ -155,8 +155,6 @@ you to install any version of Node with just a few commands:
 Install NVM:
 ```terminal
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
 Install the latest version of Node:
@@ -164,23 +162,27 @@ Install the latest version of Node:
 nvm install node
 ```
 
-![AWS install node.js with NVM on ubuntu](https://user-images.githubusercontent.com/22300773/28022864-38caceb0-6584-11e7-968e-30b4db74db96.gif)
-
-Confirm what version of nodejs you have installed:
-
+Once that's installed update NPM:
 ```terminal
-node --version
+npm i -g npm
 ```
 
+### Redirect Calls To Port 80
+
+When installed with NVM Node doesn't have access to port 80 (ports under 1024
+need root access). To fix this we'll need to redirect all traffic going to port
+80 to 3000:
+
 ```terminal
-npm --version
+sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
 ```
 
-### Create Simple Node.js HTTP Server
+### Create A Simple Node.js HTTP Server
 
 ```terminal
 vi app.js
 ```
+
 paste in a simple http app:
 
 ```javascript
