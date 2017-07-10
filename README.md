@@ -149,47 +149,45 @@ New to terminal? Try this guide: http://guides.macrumors.com/Terminal
 ### Install Node.js
 
 Mercifully you no longer need to compile node.js from source (the good old days ;-)
-Now there is an apt package you can install with a single command:
+Now there is a [great package](https://github.com/creationix/nvm) that allows
+you to install any version of Node with just a few commands:
 
+Install NVM:
 ```terminal
-sudo apt-get install nodejs npm
-```
-![AWS install node.js ubuntu](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-sudo-apt-get-install-nodejs.png "AWS install node.js on ubuntu")
-
-
-type **y** in the terminal and [enter] to install.
-
-Confirm what version of nodejs you have installed:
-
-```terminal
-node --version
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 ```
 
+Install the latest version of Node:
 ```terminal
-npm --version
+nvm install node
 ```
 
-**Note**: If you get an *error*:
-
-**-bash: /usr/sbin/node: No such file or directory**
-
-You will need to add the path, simply run this command in terminal
-(while logged into the ec2 instance):
-
+Once that's installed update NPM:
 ```terminal
-export PATH=$PATH:/usr/bin
+npm i -g npm
 ```
 
-### Create Simple Node.js HTTP Server
+### Redirect Calls To Port 80
+
+When installed with NVM Node doesn't have access to port 80 (ports under 1024
+need root access). To fix this we'll need to redirect all traffic going to port
+80 to 3000:
+
+```terminal
+sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+```
+
+### Create A Simple Node.js HTTP Server
 
 ```terminal
 vi app.js
 ```
+
 paste in a simple http app:
 
 ```javascript
-var http = require('http'),
-	port = 80;
+var http = require('http');
+var port = 3000;
 
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
