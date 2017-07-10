@@ -50,7 +50,6 @@ its pretty simple.
 Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html
 
 
-
 ### Security Group Definitions
 
 In the right column/menu click on **Security Groups**
@@ -86,12 +85,11 @@ Click **Instances** in the right column/menu and then click **Launch Instance**:
 
 Select an Amamzon Machine Image (AMI) from the list of available AMIs:
 
-![AWS Chose an AMI](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step1-choose-ami.png "AWS Pick an AMI")
 ![AWS Choose an AMI](https://user-images.githubusercontent.com/22300773/28025311-fb55c600-658a-11e7-90eb-4050cafde676.png)
 
 I recommend choosing a *bare-bones* Ubuntu Image for two reasons:
 - You don't get any *LAMP* Cruft bundled in
-- Ubuntu is simplest Linux distro and has the most (answered) FAQ questions if you get stuck!
+- Ubuntu is a very beginner friendly Linux distro and has the most (answered) FAQ questions if you get stuck!
 
 
 #### Select Instance Type
