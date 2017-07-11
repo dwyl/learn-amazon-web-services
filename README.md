@@ -53,7 +53,7 @@ Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key
 
 ### Security Group Definitions
 
-In the right column/menu click on **Security Groups**
+In the left column/menu click on **Security Groups**
 and confirm your **default** security profile allows
 inbound traffic on TCP **Port 22** (SSH) and **80** (http)
 (by default these ports aren't open, you need to add them)
@@ -78,7 +78,7 @@ e.g: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
 
 #### Launch Instance Wizard
 
-Click **Instances** in the right column/menu and then click **Launch Instance**:
+Click **Instances** in the left column/menu and then click **Launch Instance**:
 ![AWS EC2 Launch](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step0-launch.png "AWS ec2 launch")
 
 
