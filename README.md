@@ -200,9 +200,11 @@ mine was: http://54.229.220.192
 ![node server running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-node-running.png "Node HTTP Server Working")
 
 **Note**: your IP address will be different
-you get it by changing the hyphens in numbers part of the Public DNS
-to periods and then pasting that IP (V4) into your browser.
 
+You can get it by going to your AWS console page, going to your EC2 instances
+and looking at the "IPv4 Public IP" section of the instance we just created.
+
+![screenshot highlighting where to find Public IPv4 in AWS console ](https://user-images.githubusercontent.com/21139983/28060365-d3823502-661e-11e7-81c6-31442638f405.png)
 
 ### Random Tips
 
