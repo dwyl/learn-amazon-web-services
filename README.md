@@ -52,7 +52,7 @@ Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key
 
 ### Security Group Definitions
 
-In the right column/menu click on **Security Groups**
+In the left column/menu click on **Security Groups**
 and confirm your **default** security profile allows
 inbound traffic on TCP **Port 22** (SSH) and **80** (http)
 (by default these ports aren't open, you need to add them)
@@ -77,7 +77,7 @@ e.g: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
 
 #### Launch Instance Wizard
 
-Click **Instances** in the right column/menu and then click **Launch Instance**:
+Click **Instances** in the left column/menu and then click **Launch Instance**:
 ![AWS EC2 Launch](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step0-launch.png "AWS ec2 launch")
 
 
@@ -137,47 +137,45 @@ to your key:
 ### Install Node.js
 
 Mercifully you no longer need to compile node.js from source (the good old days ;-)
-Now there is an apt package you can install with a single command:
+Now there is a [great package](https://github.com/creationix/nvm) that allows
+you to install any version of Node with just a few commands:
 
+Install NVM:
 ```terminal
-sudo apt-get install nodejs npm
-```
-![AWS install node.js ubuntu](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-sudo-apt-get-install-nodejs.png "AWS install node.js on ubuntu")
-
-
-type **y** in the terminal and [enter] to install.
-
-Confirm what version of nodejs you have installed:
-
-```terminal
-node --version
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 ```
 
+Install the latest version of Node:
 ```terminal
-npm --version
+nvm install node
 ```
 
-**Note**: If you get an *error*:
-
-**-bash: /usr/sbin/node: No such file or directory**
-
-You will need to add the path, simply run this command in terminal
-(while logged into the ec2 instance):
-
+Once that's installed update NPM:
 ```terminal
-export PATH=$PATH:/usr/bin
+npm i -g npm
 ```
 
-### Create Simple Node.js HTTP Server
+### Redirect Calls To Port 80
+
+When installed with NVM Node doesn't have access to port 80 (ports under 1024
+need root access). To fix this we'll need to redirect all traffic going to port
+80 to 3000:
+
+```terminal
+sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
+```
+
+### Create A Simple Node.js HTTP Server
 
 ```terminal
 vi app.js
 ```
+
 paste in a simple http app:
 
 ```javascript
-var http = require('http'),
-	port = 80;
+var http = require('http');
+var port = 3000;
 
 var server = http.createServer(function (request, response) {
   response.writeHead(200, {"Content-Type": "text/plain"});
@@ -200,9 +198,11 @@ mine was: http://54.229.220.192
 ![node server running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-node-running.png "Node HTTP Server Working")
 
 **Note**: your IP address will be different
-you get it by changing the hyphens in numbers part of the Public DNS
-to periods and then pasting that IP (V4) into your browser.
 
+You can get it by going to your AWS console page, going to your EC2 instances
+and looking at the "IPv4 Public IP" section of the instance we just created.
+
+![screenshot highlighting where to find Public IPv4 in AWS console ](https://user-images.githubusercontent.com/21139983/28060365-d3823502-661e-11e7-81c6-31442638f405.png)
 
 ### Random Tips
 
