@@ -14,8 +14,9 @@ This whole process takes about 20 mins including creating an AWS account.
 (I recommend creating a new email address and brand new amazon account to take
 full advantage of AWS "free tier" so you don't pay while you play!)
 
-As always, if you have any questions, tweet me!
-[@nelsonic](https://twitter.com/nelsonic)
+As always, if you have questions,
+[raise an issue](https://github.com/dwyl/learn-amazon-web-services/issues/new)!
+:sparkles: 
 
 ### Register for an Amazon Webservices Account
 
