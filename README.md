@@ -31,7 +31,7 @@ the [http://aws.amazon.com/free/](http://aws.amazon.com/free/)
 Once you have registered for AWS, login via: http://aws.amazon.com/console/
 You will see all the AWS services available to you.
 
-![AWS Console Home](https://user-images.githubusercontent.com/22300773/28025033-2b0f61cc-658a-11e7-89e7-954cefad54e3.png)
+![AWS Console](https://user-images.githubusercontent.com/22300773/28063290-97479866-6628-11e7-8a57-7d71c97419fa.png)
 
 Click on **EC2** (Elastic Cloud Compute)
 
@@ -41,7 +41,7 @@ Click on **EC2** (Elastic Cloud Compute)
 To access your EC2 instance via the command line you will need to let AWS know
 what key you want to use to access it.
 
-![AWS Add Keypair](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-import-keypair-nelsonic.png "AWS Add Key Pair")
+![AWS Add Keypair](https://user-images.githubusercontent.com/22300773/28063289-9746d052-6628-11e7-8081-356b54e3e6ae.png)
 
 
 If you don't have any knowledge of SSH or public/private keys, don't worry,
@@ -57,10 +57,10 @@ and confirm your **default** security profile allows
 inbound traffic on TCP **Port 22** (SSH) and **80** (http)
 (by default these ports aren't open, you need to add them)
 
-![AWS ADD TCP PORT RULES](https://user-images.githubusercontent.com/22300773/28025181-9cc8ddc0-658a-11e7-8c2f-bee46cb21cfb.png)
+![AWS Create Security Group](https://user-images.githubusercontent.com/22300773/28063555-5c709372-6629-11e7-9d50-de1207e70c21.png)
 
 I only added ports 22 and 80 for this simple setup,
-![AWS TCP Port Rules Defined](https://user-images.githubusercontent.com/22300773/28025267-d960a38a-658a-11e7-989a-c08a01138e6e.png)
+![AWS TCP Port Rules Defined](https://user-images.githubusercontent.com/22300773/28063554-5c707978-6629-11e7-99b1-78aaa7ef9088.png)
 
 but to run other node.js processes on your server
 e.g. for MongoExpress or RedisAdmin you need to open
@@ -78,14 +78,14 @@ e.g: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html
 #### Launch Instance Wizard
 
 Click **Instances** in the left column/menu and then click **Launch Instance**:
-![AWS EC2 Launch](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step0-launch.png "AWS ec2 launch")
+![AWS EC2 Launch](https://user-images.githubusercontent.com/22300773/28063661-c833d2d6-6629-11e7-850c-28029f8ebcfe.png)
 
 
 #### Pick an Amazon Machine Image
 
 Select an Amamzon Machine Image (AMI) from the list of available AMIs:
 
-![AWS Choose an AMI](https://user-images.githubusercontent.com/22300773/28025311-fb55c600-658a-11e7-90eb-4050cafde676.png)
+![AWS Choose an AMI](https://user-images.githubusercontent.com/22300773/28063676-d8217d60-6629-11e7-9272-b96e83ab8232.png)
 
 I recommend choosing a *bare-bones* Ubuntu Image for two reasons:
 - You don't get any *LAMP* Cruft bundled in
@@ -96,18 +96,18 @@ I recommend choosing a *bare-bones* Ubuntu Image for two reasons:
 
 Keep the default **Micro** instance.
 
-![AWS micro](https://user-images.githubusercontent.com/22300773/28025074-4ad5cde8-658a-11e7-883c-f90c63bd32c9.png)
+![AWS micro](https://user-images.githubusercontent.com/22300773/28063704-fbcb35f8-6629-11e7-9579-3cb01011a95e.png)
 
 #### Select the Default Security Group
 
 Select the Default Security Group (the one we edited above):
 
-![AWS Security Group](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step6-configure-security-group.png "AWS Security Group")
+![AWS Security Group](https://user-images.githubusercontent.com/22300773/28063774-38b81f12-662a-11e7-940a-62cc7ee072eb.png)
 
 #### Review and Launch
 
 Go over everything one last time and click **Launch**
-![AWS Review and Launch](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step7-review-and-launch.png "AWS Review and Launch")
+![AWS Review and Launch](https://user-images.githubusercontent.com/22300773/28063850-742e4134-662a-11e7-9bb4-303fdd6664e1.png)
 
 #### Select the Key
 
@@ -115,21 +115,18 @@ After launch you will be prompted to select a key.
 
 Select the Key you imported earlier (so you can access the instance from SSH):
 
-![AWS Security Group](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step4-select-existing-key-pair.png "AWS Security Group")
+![AWS Select Key](https://user-images.githubusercontent.com/22300773/28063873-8588371e-662a-11e7-89aa-5ce980e27cd8.png)
 
 #### Confirm the Instance is Running
 
 
-![AWS instance running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step8-instance-running.png "AWS instance running")
+![AWS instance running](https://user-images.githubusercontent.com/22300773/28063940-c1baaff0-662a-11e7-99d0-1642c3511111.png)
 
 
 ### Connecting to your instance via SSH (Terminal/Console)
 
-Make sure that your instance is selected and click connect:
-
-![AWS connect to instance](https://user-images.githubusercontent.com/22300773/28024908-dc7dbc34-6589-11e7-9793-b8bfda8873c8.png)
-
-Copy the example command from the dialogue, replacing `"<YOUR-KEY-NAME>.pem"` with the full path
+Make sure that your instance is selected and click connect. Copy the example
+command from the dialogue, replacing `"<YOUR-KEY-NAME>.pem"` with the full path
 to your key:
 
 ![AWS ssh dialogue](https://user-images.githubusercontent.com/22300773/28024954-fc8ed65c-6589-11e7-91dd-6abfed4da36b.png)
@@ -195,14 +192,14 @@ Now visit the IP address corresponding to your instance:
 
 mine was: http://54.229.220.192
 
-![node server running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-node-running.png "Node HTTP Server Working")
+![node server running]
 
 **Note**: your IP address will be different
 
 You can get it by going to your AWS console page, going to your EC2 instances
 and looking at the "IPv4 Public IP" section of the instance we just created.
 
-![screenshot highlighting where to find Public IPv4 in AWS console ](https://user-images.githubusercontent.com/21139983/28060365-d3823502-661e-11e7-81c6-31442638f405.png)
+![screenshot highlighting where to find Public IPv4 in AWS console ](https://user-images.githubusercontent.com/22300773/28064323-0b993c44-662c-11e7-8c8b-15297794e252.png)
 
 ### Random Tips
 
@@ -228,24 +225,21 @@ An S3 bucket can be used to host a static website.
 
 1. Start by creating a new S3 bucket in the AWS S3 console.
 
- ![s3 console](https://cloud.githubusercontent.com/assets/5912647/12922703/71dca7f4-cf4a-11e5-8cb2-80df7d8795ab.png)
-
- ![new bucket](https://cloud.githubusercontent.com/assets/5912647/12922707/78204cce-cf4a-11e5-8626-ad93fbd67ea7.png)
+ ![Create S3 bucket](https://user-images.githubusercontent.com/22300773/28064428-904e9a6a-662c-11e7-88ef-f343cf7566b2.png)
 
 
-2. Select the 'Static Website Hosting' tab. Click 'Enable Website Hosting' and in the 	Index Document box add the name of the html file that will be your home page.
+2. Select the 'Properties' tab. Click 'Static web hosting' and in the Index
+Document box add the name of the html file that will be your home page.
 
-	![bucket created](https://cloud.githubusercontent.com/assets/5912647/12922719/7f829da0-cf4a-11e5-9aae-70be23b348d2.png)
+	![Static web hosting](https://user-images.githubusercontent.com/22300773/28064534-f66d343c-662c-11e7-879e-66b39eebcf1c.png)
 
-	![static hosting](https://cloud.githubusercontent.com/assets/5912647/12922739/9780e33a-cf4a-11e5-9948-411b25500256.png)
-
-	Click Save. Note down the url for your website. It will be of the form :
+	Click Save. Note down the endpoint for your website. It will be of the form :
 
 	`http://[bucket-name].s3-website-[region].amazonaws.com`
 
 3. Select the permissions tab. We need to add a bucket policy that make the bucket content public so the website endpoint can show the website files.
 
-	![permissions 1](https://cloud.githubusercontent.com/assets/5912647/12922752/a3de5aa4-cf4a-11e5-9a87-71e09dbd3206.png)
+	![permissions 1](https://user-images.githubusercontent.com/22300773/28064676-7e462bde-662d-11e7-8ee6-c78f7b0aded5.png)
 
 	Click 'Add Bucket Policy' and paste in the following policy:
 
@@ -264,15 +258,11 @@ An S3 bucket can be used to host a static website.
 	}
 	```
 
-	Replace 'example-bucket' with the name of your bucket
-
-	![permissions 2](https://cloud.githubusercontent.com/assets/5912647/12922762/b0c6c71a-cf4a-11e5-8fa5-f40f37c9cc83.png)
+	Replace 'example-bucket' with the name of your bucket.
 
 4. Upload the index document and other files for your website.
 
-	![upload](https://cloud.githubusercontent.com/assets/5912647/12922773/bb8e1e46-cf4a-11e5-991d-3166631a8027.png)
-
-	![upload 2](https://cloud.githubusercontent.com/assets/5912647/12922815/f1cbb8ec-cf4a-11e5-97b0-fda80b5940c2.png)
+	![upload](https://user-images.githubusercontent.com/22300773/28064703-98be1a44-662d-11e7-8218-2b9d8ff49d8d.png)
 
 5. Test the website by entering the website URL in the browser!
 
