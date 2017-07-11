@@ -31,7 +31,7 @@ the [http://aws.amazon.com/free/](http://aws.amazon.com/free/)
 Once you have registered for AWS, login via: http://aws.amazon.com/console/
 You will see all the AWS services available to you.
 
-![AWS Console Home](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-console-home.png "AWS Console Home")
+![AWS Console Home](https://user-images.githubusercontent.com/22300773/28025033-2b0f61cc-658a-11e7-89e7-954cefad54e3.png)
 
 Click on **EC2** (Elastic Cloud Compute)
 
@@ -51,17 +51,17 @@ Follow this tutorial: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key
 
 
 
-### CSecurity Group Definitions
+### Security Group Definitions
 
 In the right column/menu click on **Security Groups**
 and confirm your **default** security profile allows
 inbound traffic on TCP **Port 22** (SSH) and **80** (http)
 (by default these ports aren't open, you need to add them)
 
-![AWS Add TCP Port Rules](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-security-group-add-TCP-rule.png "AWS  Add TCP Port Rules")
+![AWS ADD TCP PORT RULES](https://user-images.githubusercontent.com/22300773/28025181-9cc8ddc0-658a-11e7-8c2f-bee46cb21cfb.png)
 
 I only added ports 22 and 80 for this simple setup,
-![AWS TCP Port Rules Defined](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-security-groups-rules-defined.png "AWS TCP Port Rules")
+![AWS TCP Port Rules Defined](https://user-images.githubusercontent.com/22300773/28025267-d960a38a-658a-11e7-989a-c08a01138e6e.png)
 
 but to run other node.js processes on your server
 e.g. for MongoExpress or RedisAdmin you need to open
@@ -87,8 +87,9 @@ Click **Instances** in the right column/menu and then click **Launch Instance**:
 Select an Amamzon Machine Image (AMI) from the list of available AMIs:
 
 ![AWS Chose an AMI](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step1-choose-ami.png "AWS Pick an AMI")
+![AWS Choose an AMI](https://user-images.githubusercontent.com/22300773/28025311-fb55c600-658a-11e7-90eb-4050cafde676.png)
 
-I recommend chosing a *bare-bones* Ubuntu Image for two reasons:
+I recommend choosing a *bare-bones* Ubuntu Image for two reasons:
 - You don't get any *LAMP* Cruft bundled in
 - Ubuntu is simplest Linux distro and has the most (answered) FAQ questions if you get stuck!
 
@@ -97,7 +98,7 @@ I recommend chosing a *bare-bones* Ubuntu Image for two reasons:
 
 Keep the default **Micro** instance.
 
-![AWS Micro](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step2-chose-instance-type.png "AWS Micro")
+![AWS micro](https://user-images.githubusercontent.com/22300773/28025074-4ad5cde8-658a-11e7-883c-f90c63bd32c9.png)
 
 #### Select the Default Security Group
 
@@ -105,21 +106,20 @@ Select the Default Security Group (the one we edited above):
 
 ![AWS Security Group](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step6-configure-security-group.png "AWS Security Group")
 
-
-#### Select the Key
-
-Select the Key you imported earlier (so you can access the instance from SSH)
-
-![AWS Security Group](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step4-select-existing-key-pair.png "AWS Security Group")
-
-
 #### Review and Launch
 
 Go over everything one last time and click **Launch**
 ![AWS Review and Launch](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step7-review-and-launch.png "AWS Review and Launch")
 
+#### Select the Key
 
-#### Confirm the Insance is Running
+After launch you will be prompted to select a key.
+
+Select the Key you imported earlier (so you can access the instance from SSH):
+
+![AWS Security Group](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step4-select-existing-key-pair.png "AWS Security Group")
+
+#### Confirm the Instance is Running
 
 
 ![AWS instance running](https://raw.github.com/nelsonic/EC2Setup/master/screenshots/AWS-create-ec2-instance-step8-instance-running.png "AWS instance running")
@@ -127,24 +127,14 @@ Go over everything one last time and click **Launch**
 
 ### Connecting to your instance via SSH (Terminal/Console)
 
-On Mac/Linux Open your **Terminal** application and execute
-the follow SSH connection command:
+Make sure that your instance is selected and click connect:
 
-(If you only have *one* key pair on your computer)
+![AWS connect to instance](https://user-images.githubusercontent.com/22300773/28024908-dc7dbc34-6589-11e7-9793-b8bfda8873c8.png)
 
-```terminal
-ssh ubuntu@ec2-54-229-220-192.eu-west-1.compute.amazonaws.com
-```
+Copy the example command from the dialogue, replacing `"<YOUR-KEY-NAME>.pem"` with the full path
+to your key:
 
-If you have more than one key pair on your computer
-you will need to specify the key in your ssh connection request:
-
-```terminal
-ssh -i ~/.ssh/nelsonic.pem ubuntu@ec2-54-229-220-192.eu-west-1.compute.amazonaws.com
-```
-
-New to terminal? Try this guide: http://guides.macrumors.com/Terminal
-
+![AWS ssh dialogue](https://user-images.githubusercontent.com/22300773/28024954-fc8ed65c-6589-11e7-91dd-6abfed4da36b.png)
 
 ### Install Node.js
 
