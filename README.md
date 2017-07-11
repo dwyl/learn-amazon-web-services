@@ -16,7 +16,7 @@ full advantage of AWS "free tier" so you don't pay while you play!)
 
 As always, if you have questions,
 [raise an issue](https://github.com/dwyl/learn-amazon-web-services/issues/new)!
-:sparkles: 
+:sparkles:
 
 ### Register for an Amazon Webservices Account
 
@@ -181,8 +181,10 @@ sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 3000
 ### Create A Simple Node.js HTTP Server
 
 ```terminal
-vi app.js
+nano app.js
 ```
+
+This will bring up `nano` which is a simple in terminal text editor!
 
 paste in a simple http app:
 
@@ -198,7 +200,16 @@ var server = http.createServer(function (request, response) {
 console.log("Node HTTP Server running on "+port);
 ```
 
-Start the app:
+On linux this will be done with `shift + ctrl + v`, on mac it will be with `cmd + v`.
+
+Once you've pasted this in you can exit by pressing `ctrl + x`, you will be
+prompted to save the file.
+
+Type `y` to say yes to saving your changes, and then nano will allow you to edit
+the name of the file you write out to.
+Leave the file name as is and press `enter`.
+
+Then, start the app:
 
 ```terminal
 node app
@@ -222,7 +233,7 @@ you need to keep the connection to the server alive.
 To resolve this, open your ssh config file:
 
 ```terminal
-vi ~/.ssh/config
+nano ~/.ssh/config
 ```
 
 and add the following lines:
