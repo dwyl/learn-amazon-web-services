@@ -2,6 +2,7 @@ Tutorials for AWS services
 
 * [EC2](#ec2setup)
 * [S3 Static Website Hosting](#s3-static-website-hosting)
+* [RDS](#rds)
 
 ## EC2Setup
 ========
@@ -280,7 +281,47 @@ Document box add the name of the html file that will be your home page.
 
 	The uploading of files can be incorporated into your continuous integration process. **NB the names of the files need to be versioned to prevent the cached version being displayed after an update.**
 
-### Notes
+## RDS
+
+This guide will show you how to set up a Postgresql instance on AWS RDS, but should mostly apply to all the engines available on RDS.
+
+Go to Services > RDS. If you haven't used RDS yet, click on `Get Started`, if you have, scroll down to the `Create Instance` box and select `Launch a DB Instance`.
+
+Note that the region displayed in the top right of your screen is the region your database will be located in. If you need to comply with the EU's GDPR, make sure your region is set to one in the EU: https://aws.amazon.com/compliance/eu-data-protection/
+
+<img width="750" alt="screen shot 2017-11-09 at 12 19 43" src="https://user-images.githubusercontent.com/8939909/32607172-e53507b2-c54f-11e7-845f-657cf60992d8.png">
+
+Select `Postgresql` and click `Next`. When asked to choose your use case, for now select Dev/Test. This will populate the defaults for the next section with those eligible for the `free tier`, but you can upgrade them if you wish.
+
+At the next step, if you're just getting started with RDS, check the box that says `Only enable options eligible for RDS Free Usage Tier`. This will select an instance class of db.t2.micro, with allocated storage of 20GB. These can easily be updated later if you need to.
+
+<img width="500" alt="screen shot 2017-11-09 at 13 16 32" src="https://user-images.githubusercontent.com/8939909/32607260-3c4ea710-c550-11e7-98a1-99093dd3a16a.png">
+
+In `Settings`, choose a name for your instance, a master username and password. These are what you'll use to connect to the database.
+
+On the next screen, `Configure advanced settings`, if the server you need to connect with the database is also hosted on AWS, select the VPC your server is running in. If your server is hosted elsewhere, you can leave the VPC as the default, and change `Public Accessibility` to `Yes`.
+
+To initialise your instance with a database, provide the desired name on the database to create in the `Database options` section. You can then set your encryption, backup, monitoring and maintenance settings to your preference and create your instance by clicking `Launch DB Instance`, and in a few minutes your database instance will be ready to use.
+
+To connect to your database from a server outside of the VPC it's in, you'll need to edit the security group linked to the instance. To find the security group, look at the `Connect` box on the instance details.
+
+<img width="750" alt="screen shot 2017-11-09 at 13 18 28" src="https://user-images.githubusercontent.com/8939909/32607452-05715bc4-c551-11e7-918d-1b5641a14569.png">
+
+Once you know the security group, go to Services > EC2, and select `Security Groups` from the `Network & Security` section on the sidebar. Then select the security group and the `Inbound` tab. Add an Inbound rule of type PostgreSQL, protocol TCP, port 5432 (or the port your database is using if you changed the default) and Source of the IP address your server is on, or 0.0.0.0/0 to allow inbound access from anywhere (the correct credentials will still be required to connect).
+
+### Migrating to RDS from Heroku
+
+If you're migrating your data from heroku postgres, you should first set your heroku app to maintenance mode, to ensure no data is added and subsequently lost while you're migrating.
+
+Once the app is in maintenance mode, create a backup of your data by going to your Postgres add on on heroku, then selecting `Durability` and `Capture Backup`.
+
+Once the backup is complete, you'll need to access heroku on the command line: https://devcenter.heroku.com/categories/command-line.
+
+Run the command `heroku pg:backups:download -o {app-name}.dump -a {app-name}` where `app-name` is the name of your heroku app. This will download the backup you've just created.
+
+Then to import the data into your new AWS RDS database run `pg_restore -v -h {rds-endpoint} -U {username} -d quodl {app-name}.dump` and enter the instance master user's password when prompted. The RDS endpoint can be found by selecting your instance on the RDS dashboard and scrolling down to the `Connect` box (as shown in the section above).
+
+## Notes
 
 - Install Node.js on Ubuntu: https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager#ubuntu-mint
 - SSH Keep Alive: http://stackoverflow.com/questions/13228425/write-failed-broken-pipe
