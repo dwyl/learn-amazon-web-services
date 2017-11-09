@@ -289,13 +289,13 @@ Go to Services > RDS. If you haven't used RDS yet, click on `Get Started`, if yo
 
 Note that the region displayed in the top right of your screen is the region your database will be located in. If you need to comply with the EU's GDPR, make sure your region is set to one in the EU: https://aws.amazon.com/compliance/eu-data-protection/
 
-<img width="750" alt="screen shot 2017-11-09 at 12 19 43" src="https://user-images.githubusercontent.com/8939909/32607172-e53507b2-c54f-11e7-845f-657cf60992d8.png">
+<img width="750" alt="AWS Region" src="https://user-images.githubusercontent.com/8939909/32607172-e53507b2-c54f-11e7-845f-657cf60992d8.png">
 
 Select `Postgresql` and click `Next`. When asked to choose your use case, for now select Dev/Test. This will populate the defaults for the next section with those eligible for the `free tier`, but you can upgrade them if you wish.
 
 At the next step, if you're just getting started with RDS, check the box that says `Only enable options eligible for RDS Free Usage Tier`. This will select an instance class of db.t2.micro, with allocated storage of 20GB. These can easily be updated later if you need to.
 
-<img width="500" alt="screen shot 2017-11-09 at 13 16 32" src="https://user-images.githubusercontent.com/8939909/32607260-3c4ea710-c550-11e7-98a1-99093dd3a16a.png">
+<img width="500" alt="AWS Free Tier checkbox" src="https://user-images.githubusercontent.com/8939909/32607260-3c4ea710-c550-11e7-98a1-99093dd3a16a.png">
 
 In `Settings`, choose a name for your instance, a master username and password. These are what you'll use to connect to the database.
 
@@ -305,7 +305,7 @@ To initialise your instance with a database, provide the desired name on the dat
 
 To connect to your database from a server outside of the VPC it's in, you'll need to edit the security group linked to the instance. To find the security group, look at the `Connect` box on the instance details.
 
-<img width="750" alt="screen shot 2017-11-09 at 13 18 28" src="https://user-images.githubusercontent.com/8939909/32607452-05715bc4-c551-11e7-918d-1b5641a14569.png">
+<img width="750" alt="AWS Connect details" src="https://user-images.githubusercontent.com/8939909/32607452-05715bc4-c551-11e7-918d-1b5641a14569.png">
 
 Once you know the security group, go to Services > EC2, and select `Security Groups` from the `Network & Security` section on the sidebar. Then select the security group and the `Inbound` tab. Add an Inbound rule of type PostgreSQL, protocol TCP, port 5432 (or the port your database is using if you changed the default) and Source of the IP address your server is on, or 0.0.0.0/0 to allow inbound access from anywhere (the correct credentials will still be required to connect).
 
