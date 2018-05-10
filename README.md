@@ -283,7 +283,7 @@ Document box add the name of the html file that will be your home page.
 
 ## RDS
 
-This guide will show you how to set up a Postgresql instance on AWS RDS, but should mostly apply to all the engines available on RDS.
+This guide will show you how to set up a Postgresql instance on AWS RDS, either standard, or [Aurora](https://aws.amazon.com/rds/aurora/), but should mostly apply to all the engines available on RDS.
 
 Go to Services > RDS. If you haven't used RDS yet, click on `Get Started`, if you have, scroll down to the `Create Instance` box and select `Launch a DB Instance`.
 
@@ -291,7 +291,7 @@ Note that the region displayed in the top right of your screen is the region you
 
 <img width="750" alt="AWS Region" src="https://user-images.githubusercontent.com/8939909/32607172-e53507b2-c54f-11e7-845f-657cf60992d8.png">
 
-Select `Postgresql` and click `Next`. When asked to choose your use case, for now select Dev/Test. This will populate the defaults for the next section with those eligible for the `free tier`, but you can upgrade them if you wish.
+Select `Postgresql` and click `Next`. When asked to choose your use case, for now select Dev/Test. This will populate the defaults for the next section with those eligible for the `free tier`, but you can upgrade them if you wish. (Note, `Aurora` does not have a free tier).
 
 At the next step, if you're just getting started with RDS, check the box that says `Only enable options eligible for RDS Free Usage Tier`. This will select an instance class of db.t2.micro, with allocated storage of 20GB. These can easily be updated later if you need to.
 
