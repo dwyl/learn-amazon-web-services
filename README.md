@@ -319,9 +319,20 @@ Once the backup is complete, you'll need to access heroku on the command line: h
 
 Run the command `heroku pg:backups:download -o {app-name}.dump -a {app-name}` where `app-name` is the name of your heroku app. This will download the backup you've just created.
 
-Then to import the data into your new AWS RDS database run `pg_restore -v -h {rds-endpoint} -U {username} -d quodl {app-name}.dump` and enter the instance master user's password when prompted. The RDS endpoint can be found by selecting your instance on the RDS dashboard and scrolling down to the `Connect` box (as shown in the section above).
+Then to import the data into your new AWS RDS database run:
 
-Your data should now have been migrated to RDS, the only thing left to do is switch the databases over. If you're using the `DATABASE_URL` config variable on Heroku, you need to detach your current database before you can change it. Unfortunately, detaching the database destroys it and everything in it. To avoid this, you can first by first running the command `heroku addons:attach {database-name} --as backup_db -a {app-name}`. To find your database name, run `heroku addons` on your command line; The database name is in brackets after `heroku-postgresql`. (Here, it's `postgresql-metric-95269`.)
+`pg_restore -v -h {rds-endpoint} -U {username} -d quodl {app-name}.dump`
+
+and enter the instance master user's password when prompted. The RDS endpoint can be found by selecting your instance on the RDS dashboard and scrolling down to the `Connect` box (as shown in the section above).
+
+Your data should now have been migrated to RDS, the only thing left to do is switch the databases over. If you're using the `DATABASE_URL` config variable on Heroku, you need to detach your current database before you can change it.
+
+Unfortunately, detaching the database destroys it and everything in it. To avoid this, you can first by first running the command:
+
+`heroku addons:attach {database-name} --as backup_db -a {app-name}`.
+
+To find your database name, run `heroku addons` on your command line; The database name is in brackets after `heroku-postgresql`. (Here, it's `postgresql-metric-95269`.)
+
 <img width="526" alt="screen shot 2018-05-10 at 15 27 39" src="https://user-images.githubusercontent.com/8939909/39874806-c7ca7486-5466-11e8-9b95-f84f1663212e.png">
 
 Once this is done, run `heroku addons:detach DATABASE -a {app-name}`, then add your new url: `heroku config:set DATABASE_URL=postgres://{username}:{password}@{aws-rds-host}:5432/{dbname}`.
