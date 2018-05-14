@@ -283,7 +283,7 @@ Document box add the name of the html file that will be your home page.
 
 ## RDS
 
-This guide will show you how to set up a Postgresql instance on AWS RDS, but should mostly apply to all the engines available on RDS.
+This guide will show you how to set up a Postgresql instance on AWS RDS, either standard, or [Aurora](https://aws.amazon.com/rds/aurora/), but should mostly apply to all the engines available on RDS.
 
 Go to Services > RDS. If you haven't used RDS yet, click on `Get Started`, if you have, scroll down to the `Create Instance` box and select `Launch a DB Instance`.
 
@@ -291,7 +291,7 @@ Note that the region displayed in the top right of your screen is the region you
 
 <img width="750" alt="AWS Region" src="https://user-images.githubusercontent.com/8939909/32607172-e53507b2-c54f-11e7-845f-657cf60992d8.png">
 
-Select `Postgresql` and click `Next`. When asked to choose your use case, for now select Dev/Test. This will populate the defaults for the next section with those eligible for the `free tier`, but you can upgrade them if you wish.
+Select `Postgresql` and click `Next`. When asked to choose your use case, for now select Dev/Test. This will populate the defaults for the next section with those eligible for the `free tier`, but you can upgrade them if you wish. (Note, `Aurora` does not have a free tier).
 
 At the next step, if you're just getting started with RDS, check the box that says `Only enable options eligible for RDS Free Usage Tier`. This will select an instance class of db.t2.micro, with allocated storage of 20GB. These can easily be updated later if you need to.
 
@@ -319,7 +319,25 @@ Once the backup is complete, you'll need to access heroku on the command line: h
 
 Run the command `heroku pg:backups:download -o {app-name}.dump -a {app-name}` where `app-name` is the name of your heroku app. This will download the backup you've just created.
 
-Then to import the data into your new AWS RDS database run `pg_restore -v -h {rds-endpoint} -U {username} -d quodl {app-name}.dump` and enter the instance master user's password when prompted. The RDS endpoint can be found by selecting your instance on the RDS dashboard and scrolling down to the `Connect` box (as shown in the section above).
+Then to import the data into your new AWS RDS database run:
+
+`pg_restore -v -h {rds-endpoint} -U {username} -d {database-name} {app-name}.dump`
+
+and enter the instance master user's password when prompted. The RDS endpoint can be found by selecting your instance on the RDS dashboard and scrolling down to the `Connect` box (as shown in the section above).
+
+Your data should now have been migrated to RDS, the only thing left to do is switch the databases over. If you're using the `DATABASE_URL` config variable on Heroku, you need to detach your current database before you can change it.
+
+Unfortunately, detaching the database destroys it and everything in it. To avoid this, you can first by first running the command:
+
+`heroku addons:attach {database-addon-name} --as backup_db -a {app-name}`.
+
+To find your database addon name, run `heroku addons` on your command line; The database name is in brackets after `heroku-postgresql`. (Here, it's `postgresql-metric-95269`.)
+
+<img width="526" alt="screen shot 2018-05-10 at 15 27 39" src="https://user-images.githubusercontent.com/8939909/39874806-c7ca7486-5466-11e8-9b95-f84f1663212e.png">
+
+Once this is done, run `heroku addons:detach DATABASE -a {app-name}`, then add your new url: `heroku config:set DATABASE_URL=postgres://{username}:{password}@{aws-rds-host}:5432/{dbname}`.
+
+If you're using other environment variables for your database connection (for example `PGHOST`, `PGUSER` etc.), make sure to update those too.
 
 ## Notes
 
