@@ -50,8 +50,15 @@ is advantageous but _not required_.
 
 ### Setup
 
-Login to your account and visit the SES endpoint:
-https://console.aws.amazon.com/ses/
+Login to your AWS account
+and visit the SES endpoint:
+https://console.aws.amazon.com/ses
+
+![02-ses-home](https://user-images.githubusercontent.com/194400/73847617-925cde80-481e-11ea-9641-7f6e077952a2.png)
+
+### 1. Verify a New Domain
+
+
 
 
 
