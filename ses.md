@@ -186,6 +186,8 @@ Once you submit the case you see a summary similar to this:
 
 ![aws-ses-case-details](https://user-images.githubusercontent.com/194400/74108011-813d0600-4b6d-11ea-964c-aa193426beb2.png)
 
+Expect to receive a reply within one working day.
+
 <hr />
 
 ## _Way_ More Detail 💭
