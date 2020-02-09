@@ -104,6 +104,56 @@ If you refresh the AWS you should see that the email address is verified:
 ![aws-ses-email-verified](https://user-images.githubusercontent.com/194400/74105797-efc39900-4b58-11ea-9d51-7e43c24780ee.png)
 
 
+### 3. Send an Email
+
+In the Amazon SES console,
+select the radio button to the left of the email address you just verified,
+and then click on "Send a Test Email":
+
+![aws-ses-send-test-1](https://user-images.githubusercontent.com/194400/74106498-7b402880-4b5f-11ea-8b81-1cd17ac95e0a.png)
+
+
+#### 3.1 Send _Formatted_ Email
+
+Compose and send a ***Formatted*** email:
+
+![aws-ses-send-test-compose](https://user-images.githubusercontent.com/194400/74106507-84c99080-4b5f-11ea-908a-63b64eac57e7.png)
+
+In your email you should see:
+
+<img width="518" alt="image" src="https://user-images.githubusercontent.com/194400/74106642-73cd4f00-4b60-11ea-98d7-06d455acce47.png">
+
+
+#### 3.2 Send _Raw_ Email
+
+Next try sending a ***Raw*** email.
+
+![aws-ses-send-raw-email](https://user-images.githubusercontent.com/194400/74106567-fb668e00-4b5f-11ea-9174-e85d1ef5f082.png)
+
+
+Paste the following text:
+
+```html
+Subject: Amazon SES Test
+MIME-Version: 1.0
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>You have successfully sent an email using Amazon SES!</h1>
+  <p>For more information about Amazon SES, see the
+    <a href="http://docs.aws.amazon.com/ses/latest/DeveloperGuide/Welcome.html">
+      Amazon SES Developer Guide
+    </a>.
+  </p>
+</body>
+</html>
+```
+
+In your email, you should see:
+
+<img width="508" alt="image" src="https://user-images.githubusercontent.com/194400/74106663-8fd0f080-4b60-11ea-9d00-fce76a215dc9.png">
 
 
 ## _Way_ More Detail 💭
