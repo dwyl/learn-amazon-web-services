@@ -156,4 +156,36 @@ In your email, you should see:
 <img width="508" alt="image" src="https://user-images.githubusercontent.com/194400/74106663-8fd0f080-4b60-11ea-9d00-fce76a215dc9.png">
 
 
+
+### 4. Escape the Sandbox
+
+At this point you have _successfully_ setup AWS SES,
+but you can only _send_ emails to verified email addresses,
+which is not much _use_ beyond testing.
+
+In order to send email to _any_ address,
+you need to request that AWS remove your account from the "sandbox":
+https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
+
+In the AWS SES interface, click on the Support selector in the top-right and select "Support Center":
+![aws-ses-support](https://user-images.githubusercontent.com/194400/74107680-9cf2dd00-4b6a-11ea-91e1-6062641f4197.png)
+
+Once in the AWS Support interface, click on "create support case":
+![aws-ses-create-case](https://user-images.githubusercontent.com/194400/74107723-ea6f4a00-4b6a-11ea-9d8a-c795e68c31cf.png)
+
+In the case creation interface, select the "Service limit increase" option:
+![aws-case-increase-limits](https://user-images.githubusercontent.com/194400/74107733-fb1fc000-4b6a-11ea-8551-ae312c01b3cf.png)
+
+Input the relevant data and then click on "Submit":
+
+![request](https://user-images.githubusercontent.com/194400/74107798-987af400-4b6b-11ea-9ea5-ee32bc695740.png)
+
+![aws-ses-click-submit](https://user-images.githubusercontent.com/194400/74107757-38844d80-4b6b-11ea-82c5-5c42f51c5c34.png)
+
+Once you submit the case you see a summary similar to this:
+
+![aws-ses-case-details](https://user-images.githubusercontent.com/194400/74108011-813d0600-4b6d-11ea-964c-aa193426beb2.png)
+
+<hr />
+
 ## _Way_ More Detail 💭
