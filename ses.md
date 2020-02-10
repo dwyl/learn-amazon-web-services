@@ -1,4 +1,4 @@
-# Amazon Simple Email Service (SES) Setup
+# Amazon Simple Email Service (SES) Setup
 
 This guide takes you through setting up Amazon SES.
 
@@ -186,7 +186,20 @@ Once you submit the case you see a summary similar to this:
 
 ![aws-ses-case-details](https://user-images.githubusercontent.com/194400/74108011-813d0600-4b6d-11ea-964c-aa193426beb2.png)
 
-Expect to receive a reply within one working day.
+A day later ... you should expect something similar to this:
+
+![aws-ses-setup-out-of-sandbox](https://user-images.githubusercontent.com/194400/74197166-bf622480-4c56-11ea-80bf-60ad8c1efb55.png)
+
+
+### 5. Send an Email!
+
+Now that you have verified your email address
+and you are out of the "sandbox",
+you can send email!
+
+Try following the instructions in:
+https://github.com/dwyl/sendemail
+
 
 <hr />
 
