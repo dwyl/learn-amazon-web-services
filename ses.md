@@ -203,4 +203,63 @@ https://github.com/dwyl/sendemail
 
 <hr />
 
-## _Way_ More Detail 💭
+## tl;dr > Why Use SES?
+
+### AWS Pricing (Lambda + SES) _Per Email_: $0.0001004
+
+Each email sent has 2 "_parts_" with corresponding costs.
+
+#### Lambda Price [$0.0000002 + $0.000000208](http://www.wolframalpha.com/input/?i=$0.0000002+%2B+$0.000000208) = $0.00004 (_per request/execution_)
+
+https://aws.amazon.com/lambda/pricing/
+
+![lambda pricing](https://cloud.githubusercontent.com/assets/194400/22722867/c3cedb64-edb1-11e6-97b6-8075315b5726.png)
+
+
+Lambda Pricing is broken down into two components:
++ $0.0000002 per request (_execution cost regardless of duration/memory used_)
++ $0.000000208 per 100ms (_execution time_)
+
+
+#### SES Price [$0.10 / 1000](http://www.wolframalpha.com/input/?i=$0.1%2F1000) = $0.0001
+
+https://aws.amazon.com/ses/pricing/
+![AWS SES Pricing](https://cloud.githubusercontent.com/assets/194400/22722910/1f50065c-edb2-11e6-9b91-fe9b75ee973b.png)
+
+
+<!--
+#### API Gateway [$3.50 / 1,000,000](http://www.wolframalpha.com/input/?i=$3.50+%2F+1000000) = $0.00035 (_per request_)
+
+The API Gateway is _useful_ in the "_Serverless_" context.
+e.g: if we wanted the ability to send an email directly from a client-side app
+without going through our application server.
+
+https://aws.amazon.com/api-gateway/pricing/
+![API Gateway Pricing](https://cloud.githubusercontent.com/assets/194400/22722312/fbe646b2-edad-11e6-8967-f375be10401b.png)
+
+> **Note**: We _decided_ to ***remove*** the API Gateway from our solution
+because it added no value (_actually it adds latency!_)
+to this application (_we aren't using caching or request throttling_)
+and contributed the _vast majority of the **cost**_!!
+-->
+
+#### Conclusion
+
+We need to make our total (_incremental_) cost of running
+our "Email Solution" _significantly_ cheaper,
+while delivering comparable features.
+
+For _all_ companies/teams using AWS sending up to **65,000 Emails a Month**
+will be **_Completely_ Free**.
+(_covered by the free usage tier for the first 12 months_).
+
+### Longer Term
+
+Our ***long-term plan*** is to run ***all*** our own infrastructure.
+see: https://github.com/dwyl/time/issues/153
+Not only is it _cheaper_ to run our own hardware than to _burn_ money on AWS,
+but we get the added benefit of being **_fully_ in control** of where
+our data is stored and encrypting all communication at all times.
+For the next few months we will be using AWS because it's "fit for purpose",
+and by building this as a Lambda that uses SES and exposes a simple API,
+we can _easily_ substitute it later when we move to our own infra.
