@@ -1,22 +1,26 @@
-# Amazon Simple Email Service (SES) Setup
+# Amazon Simple Email Service (SES) Setup 🔧
 
-This guide takes you through setting up Amazon SES.
+This guide takes you through setting up
+a verified email address on Amazon SES
+and escaping the "sandbox".
 
 
-## Why?
+## Why? 🤷
 
 All Software as a Service (SaaS) Products that create value send **`email`**. <br />
 Even if it's just a reminder to pay a bill,
 an **`email`** has to be sent _reliably_. <br />
-Amazon's SES is a _reliable_ and _~~cheap~~_ _cheapest_ email service.
+Amazon's SES is a _reliable_, full featured
+and _~~cheap~~_ _cheapest_ email service.
 
 [@dwyl](https://github.com/dwyl) we _rely_ on **`email`** as our _primary_
-[feedback loop](https://en.wikipedia.org/wiki/Feedback).
-Without **`email`** we cannot _communicate_
+[feedback loop](https://en.wikipedia.org/wiki/Feedback). <br />
+Without **`email`** we cannot
+[_communicate_](https://github.com/dwyl/app/issues/267)
 with the people who are using our App.
 
 
-## What?
+## What? 💭
 
 Amazon Web Services (AWS) Simple Email Service (SES)
 lets you **send** and **_receive_ email**. <br />
@@ -33,13 +37,13 @@ that you should consider exploring if you want a _turn-key_
 solution to your AWS SES needs.
 
 
-## Who?
+## Who? 👤
 
 Anyone building an App
 who wants to have control over their **`email`**.
 
 
-## How?
+## How? ✅
 
 Prerequisites:
 This guide assumes you already have an AWS account.
@@ -51,7 +55,7 @@ is advantageous but _not required_.
 Follow the instructions in:
 https://aws.amazon.com/getting-started/tutorials/send-an-email
 
-### Setup
+### Setup 🛠
 
 Login to your AWS account
 and visit the SES endpoint:
@@ -61,7 +65,7 @@ https://console.aws.amazon.com/ses
 
 From the SES Home screen, click on "Email Addresses"
 
-### 1. Verify an Email Address
+### 1. Verify an Email Address ✉️
 
 In the "Email Addresses" menu, click on "Verify a New Email Address":
 
@@ -86,7 +90,7 @@ You should see a messaging confirming that the verification email was sent:
 
 ![aws-ses-verification-sent](https://user-images.githubusercontent.com/194400/74105708-251bb700-4b58-11ea-832a-a820e6bc7a92.png)
 
-### 2. Open Email and Click Verification Link
+### 2. Open Email and Click Verification Link 🔗
 
 Open the email client associated with the email address you want to verify,
 locate the verifcation email sent by AWS and click the link:
@@ -104,7 +108,7 @@ If you refresh the AWS you should see that the email address is verified:
 ![aws-ses-email-verified](https://user-images.githubusercontent.com/194400/74105797-efc39900-4b58-11ea-9d51-7e43c24780ee.png)
 
 
-### 3. Send an Email
+### 3. Send a Test Email 📤  
 
 In the Amazon SES console,
 select the radio button to the left of the email address you just verified,
@@ -157,7 +161,7 @@ In your email, you should see:
 
 
 
-### 4. Escape the Sandbox
+### 4. Escape the Sandbox 👮
 
 At this point you have _successfully_ setup AWS SES,
 but you can only _send_ emails to verified email addresses,
@@ -191,7 +195,7 @@ A day later ... you should expect something similar to this:
 ![aws-ses-setup-out-of-sandbox](https://user-images.githubusercontent.com/194400/74197166-bf622480-4c56-11ea-80bf-60ad8c1efb55.png)
 
 
-### 5. Send an Email!
+### 5. Send an Email! 💡
 
 Now that you have verified your email address
 and you are out of the "sandbox",
@@ -203,7 +207,7 @@ https://github.com/dwyl/sendemail
 
 <hr />
 
-## tl;dr > Why Use SES?
+## tl;dr > Why Use SES? 💰
 
 ### AWS Pricing (Lambda + SES) _Per Email_: $0.0001004
 
