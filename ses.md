@@ -204,7 +204,54 @@ Try following the instructions in:
 https://github.com/dwyl/sendemail
 
 
-<hr />
+
+### 6. Create IAM Policy to Send Email from a Lambda Function
+
+If you want to send an email from an AWS Lambda function,
+there are a few extra steps to setup an IAM policy to allow this.
+
+On the IAM policies homepage, select **Policies** and then **Create policy**:
+https://console.aws.amazon.com/iam/home?region=eu-west-1#/policies
+![aws-iam-lambdases-01-home](https://user-images.githubusercontent.com/194400/74332050-e0c52c80-4d8c-11ea-8a8f-db8f617e120c.png)
+
+Select the **JSON** tab and paste the `json` from the instructions,
+then click **Review policy**
+https://aws.amazon.com/premiumsupport/knowledge-center/lambda-send-email-ses
+![aws-iam-lambdases-02-create](https://user-images.githubusercontent.com/194400/74332213-2bdf3f80-4d8d-11ea-87f4-7858b22035f4.png)
+
+Review the policy and _name_ it e.g: **LambdaSES**
+![aws-iam-lambdases-03-name](https://user-images.githubusercontent.com/194400/74332428-97c1a800-4d8d-11ea-8be3-538126d6f407.png)
+Cant share a link in this description, so just google for
+**How do I send email using Lambda and Amazon SES**
+
+Once you click on **Create policy**
+you should see a confirmation **`LambdaSES has been created.`**:
+![aws-iam-lambdases-04-confirm](https://user-images.githubusercontent.com/194400/74332577-f424c780-4d8d-11ea-8a10-cda8657e1ef3.png)
+
+Next we need to _attach_ the policy to the _existing_ role.
+Search for the policy, select it and
+then click on the **Policy actions** selector:
+![aws-iam-lambdases-05-policy-action](https://user-images.githubusercontent.com/194400/74332683-3221eb80-4d8e-11ea-8d57-8f2bf1cc3daa.png)
+
+Attach the policy to the `LambdaExecRole`:
+![aws-iam-lambdases-06-policy-attach-to-role](https://user-images.githubusercontent.com/194400/74332756-5d0c3f80-4d8e-11ea-82e2-44814d9c4ea4.png)
+
+Once you click the **Attach policy** button,
+you should see a confirmation similar to this:
+![aws-iam-lambdases-07-policy-attched-confirm](https://user-images.githubusercontent.com/194400/74332856-9e9cea80-4d8e-11ea-8b01-2afd05759c2c.png)
+
+
+This will allow you to send email from a Lambda function e.g:
+![aws-ses-lambda-test-send](https://user-images.githubusercontent.com/194400/74333404-cc366380-4d8f-11ea-8470-95de50ff296f.png)
+
+Email received:
+![aws-ses-lambda-result-email-received](https://user-images.githubusercontent.com/194400/74333626-38b16280-4d90-11ea-9878-05c5e93d3fd3.png)
+
+
+
+
+
+<br /><hr /><br /><br />
 
 ## tl;dr > Why Use SES? 💰
 
