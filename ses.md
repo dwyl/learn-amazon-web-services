@@ -42,18 +42,17 @@ solution to your AWS SES needs.
 Anyone building an App
 who wants to have control over their **`email`**.
 
+This guide follows and enhances the official AWS instructions:
+https://aws.amazon.com/getting-started/tutorials/send-an-email
 
 ## How? ✅
 
-Prerequisites:
-This guide assumes you already have an AWS account.
+Prerequisites: <br />
+This guide assumes you already have an AWS account. <br />
 Additionally, if you plan to follow along with
 the _practical_ side of sending emails,
 some familiarity with `JavaScript`
 is advantageous but _not required_.
-
-Follow the instructions in:
-https://aws.amazon.com/getting-started/tutorials/send-an-email
 
 ### Setup 🛠
 
@@ -74,11 +73,11 @@ In the "Email Addresses" menu, click on "Verify a New Email Address":
 
 > **Note**:
 In our case we had to _setup_ a **_free_ Zoho Mail** email account
-for our domain in order to _receive_ the confirmation email. <br />
+for our domain in order to _receive_ the confirmation email.
 See:
 [issues/35](https://github.com/dwyl/learn-amazon-web-services/issues/35)
 for detailed steps on how to do this.
-It takes around 5 mins.
+It takes around **5 mins**.
 
 #### 1.1 Verify _this_ Email Address
 
@@ -247,16 +246,20 @@ to this application (_we aren't using caching or request throttling_)
 and contributed the _vast majority of the **cost**_!!
 -->
 
-#### Conclusion
+### Conclusion
 
 We need to make our total (_incremental_) cost of running
 our "Email Solution" _significantly_ cheaper,
-while delivering comparable features.
+while delivering comparable features to other providers.
+That's why we need to use _both_ SES _and_ Lambda
+to both _send_ emails and track notifications,
+hence: https://github.com/dwyl/aws-ses-lambda
 
 For _all_ companies/teams using AWS sending up to **65,000 Emails a Month**
 will be **_Completely_ Free**.
 (_covered by the free usage tier for the first 12 months_).
 
+<!--
 ### Longer Term
 
 Our ***long-term plan*** is to run ***all*** our own infrastructure.
@@ -267,3 +270,4 @@ our data is stored and encrypting all communication at all times.
 For the next few months we will be using AWS because it's "fit for purpose",
 and by building this as a Lambda that uses SES and exposes a simple API,
 we can _easily_ substitute it later when we move to our own infra.
+-->
