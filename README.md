@@ -1,15 +1,19 @@
-Tutorials for AWS services
+# Tutorials for AWS services
 
-* [EC2](#ec2setup)
-* [S3 Static Website Hosting](#s3-static-website-hosting)
-* [RDS](#rds)
+We have covered the most popular AWS Services:
+
+
+* [AWS Elastic Cloud Compute (EC2)](#ec2setup)
+* [AWS Simple Storage Solution (S3() Static Website Hosting](#s3-static-website-hosting)
+* [Amazon Relational Database System (RDS)](#rds)
++ [Amazon Simple Email Service (SES)](https://github.com/dwyl/learn-amazon-web-services/blob/master/ses.md)
+
+<br />
 
 ## EC2Setup
-========
+
 
 Documenting/sharing how I get an EC2 instance up and running.
-
-- - -
 
 This whole process takes about 20 mins including creating an AWS account.
 (I recommend creating a new email address and brand new amazon account to take
